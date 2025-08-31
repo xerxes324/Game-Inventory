@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    html,body{
+        margin: 0px; padding: 0px;
+        min-height: 100vh;
+        background-color: black;
+        color: white;
+    }
+    h1{
+        text-align: center;
+        margin-bottom: 5rem;
+    }
+
+    #anchor{
+        margin-bottom: 2rem;
+        text-align: center;
+        font-size: 20px;
+    }
+
+    a{
+        text-decoration: none;
+        color: red;
+    }
+    a:hover{
+        color: green;
+    }
+
+    table{
+        margin-bottom: 5rem;
+    }
+
+    table,th,td{
+        border: 2px solid white;       
+    }
+    td{
+        height: 40px;
+        text-align: center;
+    }
+    #tableheading{
+        font-size: 30px;
+    }
+    #tablediv{
+        display: flex;
+        justify-content: center;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory </title>
+</head>
+<body>
+    <h1> <u>Game Inventory </u> </h1>
+    <div id = "anchor">
+        <a href="/"> Click to go back to Menu </a>
+    </div>
+    
+
+
+    <div id = "tablediv">
+        <table style="width:80%" >
+
+            <tr id = "tableheading">
+                <td> Game </td>
+                <td> Developer </td>
+                <td> Genre </td>
+            </tr>
+
+            <% content.forEach((e) => { %>
+                <tr> 
+                    <td> <%= e.game %> </td>
+                    <td> <%= e.developer %></td>
+                    <td> <%= e.genre %> </td>
+                </tr>
+            <% }) %>
+        </table>
+    </div>
+
+
+    
+</body>
+</html>
