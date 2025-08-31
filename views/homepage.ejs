@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+</head>
+
+<style>
+    html,body{
+        background-color: black;
+        color: white;
+    }
+    #heading{
+        text-align: center;
+    }
+    label{
+        font-size: 25px;
+    }
+    #anchor{
+        text-align: center;
+        font-size: 25px;
+    }
+    #searchform{
+        margin-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    input{
+        width: 20rem;
+        height: 2rem;
+    }
+    input:hover{
+        background-color: rgb(216, 213, 213);
+    }
+    button{
+        height: 2rem;
+        border-radius: 10px;
+    }
+
+    button:hover{
+        background-color: greenyellow;
+    }
+
+    #categories{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10rem;
+    }
+    #categories button{
+        margin-top: 5rem;
+        font-size: 35px;
+        height: fit-content;
+    }
+
+</style>
+
+<body>
+    <h1 id="heading" > Menu </h1>
+
+    <div id="anchor" >
+        <a href="/tableList"> Click here to view the table </a>
+    </div>
+
+    <div id="categories">
+        <form action="/games" method="GET">
+            <button> Games </button>
+        </form>
+
+        <form action="/developers" method="GET">
+            <button> Developers </button>
+        </form>
+        <form action="/genres" method="GET" >
+            <button> Genres </button>
+        </form>
+
+
+    </div>
+
+    <form id = "searchform" method="GET" action="/searchGame">
+        <div>
+            <label> Search for a game </label>
+        </div>
+        <div>
+            <input required placeholder="Enter a game eg. The Witcher" type="text" name="search"/>
+            <button type="submit"> Search </button>
+        </div>
+
+    </form>    
+
+    <form id = "createForm" >
+
+    </form>
+</body>
+</html>
