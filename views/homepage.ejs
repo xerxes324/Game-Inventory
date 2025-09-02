@@ -55,6 +55,23 @@
         font-size: 35px;
         height: fit-content;
     }
+    .addgamelabel{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* background-color: red; */
+        margin-top: 15rem;
+    }
+
+    .addgamedetails{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .addgamedetails button{
+        width: 10rem;
+    }
 
 </style>
 
@@ -91,8 +108,17 @@
 
     </form>    
 
-    <form id = "createForm" >
+    <form id = "createForm" method="GET" action="/addGame" >
+        <div class="addgamelabel" >
+            <label> Add a new game </label>
+        </div>
 
+        <div class="addgamedetails" >
+            <input name="gameName" placeholder="Enter a game eg. The Witcher"/>
+            <input name="devName" placeholder="Enter Developer name" />
+            <input name="genName" placeholder="Enter game genre eg. Action"/>
+            <button type="submit"> Add + </button>
+        </div>
     </form>
 </body>
 </html>

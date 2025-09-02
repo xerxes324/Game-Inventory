@@ -61,4 +61,46 @@ async function getGenres(){
     return rows;
 }
 
-module.exports = {displayGameInfo, inventory, getGames, getDevs, getGenres};
+async function addGame(game,dev,gen){
+    await pool.query(
+        `
+        INSERT INTO developers (dev_name) 
+        VALUES
+        ($1)
+        ON CONFLICT ( dev_name ) DO NOTHING;
+        `,
+        [dev]
+    )
+
+    await pool.query(
+        `
+        INSERT into genres ( genre_name )
+        VALUES
+        ($1)
+        ON CONFLICT ( genre_name ) DO NOTHING;
+        `,
+        [gen]
+    )
+
+    await pool.query(
+        `
+        INSERT into games ( game_name, dev_id)
+        VALUES
+        ($1, (SELECT dev_id from developers where dev_name = $2))
+        ON CONFLICT ( game_name ) do nothing;
+        `,
+        [game, dev]
+    )
+
+    await pool.query(
+        `
+        INSERT INTO game_genres (game_id , genre_id) VALUES 
+        ((SELECT game_id from games where game_name = $1),
+        (SELECT genre_id from genres where genre_name = $2))
+        ON CONFLICT do nothing;
+        `,
+        [game, gen]
+    )
+}
+
+module.exports = {addGame, displayGameInfo, inventory, getGames, getDevs, getGenres};
