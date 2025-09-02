@@ -34,7 +34,6 @@ exports.viewTable = async(req,res) => {
     res.render("table", {content : content});
 }
 
-
 exports.showGames = async(req,res)=>{
     const games = await db.getGames();
     console.log(games, 'is the games');
@@ -51,4 +50,16 @@ exports.showGenres = async(req,res) => {
     const gen = await db.getGenres();
     console.log(gen);
     res.render("genres", {genre: gen});
+}
+
+exports.edit = async(req,res) => {
+    const game = req.query.gameName;
+    const dev = req.query.devName;
+    const gen = req.query.genreName;
+    const id = req.query.id;
+    console.log(game, dev, gen, id , "are the four.");  
+    
+
+    // const content = await db.inventory();
+    // res.render("table", {content : content});
 }
