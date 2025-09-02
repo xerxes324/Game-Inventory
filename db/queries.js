@@ -17,7 +17,7 @@ async function displayGameInfo(game){
 async function inventory(){
     const {rows} = await pool.query(
         `
-            SELECT game_name as Game, dev_name as Developer ,
+            SELECT g.game_id as ID , game_name as Game, dev_name as Developer ,
             STRING_AGG(genre_name::text, ' , ') as Genre
             FROM games g
             JOIN developers d 
@@ -26,8 +26,8 @@ async function inventory(){
             ON g.game_id = junc.game_id
             JOIN genres gn 
             ON gn.genre_id = junc.genre_id
-            group by g.game_name , d.dev_name
-            
+            group by g.game_name , d.dev_name, g.game_id
+            ORDER by g.game_id
         `
     )
     return rows;
