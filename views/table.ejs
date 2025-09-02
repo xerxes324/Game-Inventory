@@ -6,6 +6,7 @@
         min-height: 100vh;
         background-color: black;
         color: white;
+        position: relative;
     }
     h1{
         text-align: center;
@@ -44,6 +45,27 @@
         display: flex;
         justify-content: center;
     }
+
+    .formDiv{
+        display: flex;
+        flex-direction: column;
+        background-color: blue;
+        position: absolute;
+        top: 50%;
+        height: min-content;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .editForm{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 5rem;
+        padding: 5rem;
+        /* justify-content: center; */
+        /* align-items: center; */
+    }
+
 </style>
 
 <head>
@@ -63,22 +85,77 @@
         <table style="width:80%" >
 
             <tr id = "tableheading">
+                <td> ID </td>
                 <td> Game </td>
                 <td> Developer </td>
                 <td> Genre </td>
+                <td> Edit </td>
+                <td> Delete </td>
             </tr>
 
             <% content.forEach((e) => { %>
+
                 <tr> 
+                    <td> <%= e.id %> </td>
                     <td> <%= e.game %> </td>
                     <td> <%= e.developer %></td>
                     <td> <%= e.genre %> </td>
+                    <td> <button onclick="editfn('<%= e.id %>')">Edit</button></td>
+                    <td> <button> Delete </button></td>
                 </tr>
             <% }) %>
         </table>
     </div>
 
+<script>
 
+    const editfn = (ID) =>{
+        console.log(ID, "yay");
+
+        const formDiv = document.createElement("div");
+        formDiv.classList.add("formDiv");
+
+        const form = document.createElement("form");
+        form.classList.add('editForm');
+        form.setAttribute("method", "GET");
+        form.setAttribute("action","/editgame" );
+
+        const hiddenID = document.createElement("input");
+        hiddenID.setAttribute("type","hidden");
+        hiddenID.value = ID;
+        hiddenID.setAttribute("name", "id");
+
+        const gamelabel = document.createElement("label");
+        gamelabel.textContent = "Game : ";
+        const gamefield = document.createElement('input');
+        gamefield.setAttribute("name", "gameName")
+        gamefield.setAttribute("type", "text")
+        // gamefield.setAttribute("required");
+
+        const devlabel = document.createElement('label');
+        devlabel.textContent = "Developer : ";
+        const devfield = document.createElement("input");
+        devfield.setAttribute("name", "devName")
+        devfield.setAttribute("type", "text");
+        // devfield.setAttribute("required");
+        
+        const genrelabel = document.createElement("label");
+        genrelabel.textContent = "Genre: ";
+        const genrefield = document.createElement("input");
+        genrefield.setAttribute("name", "genreName")
+        genrefield.setAttribute("type", "text");
+        // genrefield.setAttribute("required");
+
+        const submitBtn = document.createElement("button");
+        submitBtn.textContent = "Submit"
+        submitBtn.setAttribute("type", "submit");
+
+        form.append(hiddenID, gamefield,devlabel,devfield,genrelabel, genrefield, submitBtn);
+        formDiv.append(form);
+        document.body.append(formDiv);
+    }
+
+</script>
     
 </body>
 </html>
