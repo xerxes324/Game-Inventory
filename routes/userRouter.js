@@ -8,6 +8,7 @@ userRouter.get("/tableList", userController.viewTable);
 userRouter.get("/games",userController.showGames);
 userRouter.get("/developers", userController.showDevelopers);
 userRouter.get("/genres", userController.showGenres);
+userRouter.get("/editgame", userController.edit);
 
 module.exports = userRouter;
 
