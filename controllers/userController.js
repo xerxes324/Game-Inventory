@@ -73,5 +73,5 @@ exports.addGame = async(req,res) => {
 
     const content = await db.inventory();
     console.log("the content is, " ,content);
-    // res.render("table", {content: content})
+    res.render("table", {content: content});
 }

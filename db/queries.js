@@ -27,7 +27,7 @@ async function inventory(){
             JOIN genres gn 
             ON gn.genre_id = junc.genre_id
             group by g.game_name , d.dev_name, g.game_id
-            ORDER by g.game_id
+            ORDER by g.game_name;
         `
     )
     return rows;
@@ -62,7 +62,14 @@ async function getGenres(){
 }
 
 async function addGame(game,dev,gen){
-    await pool.query(
+
+    const client = await pool.connect();
+
+    try{
+    
+    await client.query('BEGIN');
+    
+    await client.query(
         `
         INSERT INTO developers (dev_name) 
         VALUES
@@ -71,8 +78,9 @@ async function addGame(game,dev,gen){
         `,
         [dev]
     )
+    
 
-    await pool.query(
+    await client.query(
         `
         INSERT into genres ( genre_name )
         VALUES
@@ -82,7 +90,7 @@ async function addGame(game,dev,gen){
         [gen]
     )
 
-    await pool.query(
+    await client.query(
         `
         INSERT into games ( game_name, dev_id)
         VALUES
@@ -92,7 +100,7 @@ async function addGame(game,dev,gen){
         [game, dev]
     )
 
-    await pool.query(
+    await client.query(
         `
         INSERT INTO game_genres (game_id , genre_id) VALUES 
         ((SELECT game_id from games where game_name = $1),
@@ -101,6 +109,19 @@ async function addGame(game,dev,gen){
         `,
         [game, gen]
     )
+    await client.query('COMMIT');       
+    console.log("Game added successfully");
+    }//try close.
+
+    catch(error){
+        console.log("failed!");
+        await client.query('ROLLBACK');
+        throw error;
+    }
+    finally{
+        client.release();
+    }
+    
 }
 
 module.exports = {addGame, displayGameInfo, inventory, getGames, getDevs, getGenres};
