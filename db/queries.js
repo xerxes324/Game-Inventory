@@ -124,4 +124,26 @@ async function addGame(game,dev,gen){
     
 }
 
-module.exports = {addGame, displayGameInfo, inventory, getGames, getDevs, getGenres};
+async function editRow(game,dev,gen,id){
+
+
+    await deleteRow(id);
+    await addGame(game,dev,gen);
+}
+
+
+async function deleteRow(id){
+    await pool.query(
+        `
+            DELETE FROM game_genres where game_id = $1
+        `, [id]
+    )
+
+    await pool.query(
+        `
+            DELETE from games where game_id = $1
+        `, [id]
+    )
+}
+
+module.exports = {deleteRow,editRow, addGame, displayGameInfo, inventory, getGames, getDevs, getGenres};
