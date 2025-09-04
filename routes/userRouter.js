@@ -10,6 +10,7 @@ userRouter.get("/developers", userController.showDevelopers);
 userRouter.get("/genres", userController.showGenres);
 userRouter.get("/editgame", userController.edit);
 userRouter.get("/addGame", userController.addGame);
-
+userRouter.post("/delete", userController.deleteGame);
+    
 module.exports = userRouter;
 
