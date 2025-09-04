@@ -22,9 +22,6 @@ exports.searchGame = async(req,res)=>{
         }
         
     }
-    // else{
-    //    res.send("enter something atleast man");
-    // }
 }
 
 exports.viewTable = async(req,res) => {
@@ -59,19 +56,26 @@ exports.edit = async(req,res) => {
     const id = req.query.id;
     // console.log(game, dev, gen, id , "are the four.");  
     
-
-    // const content = await db.inventory();
-    // res.render("table", {content : content});
+    await db.editRow(game,dev,gen,id);
+    const content = await db.inventory();
+    console.log(content,"is the content");
+    res.render("table", {content: content});
 }
 
 exports.addGame = async(req,res) => {
     const game = req.query.gameName;
     const dev = req.query.devName;
     const gen = req.query.genName;
-    // console.log(game, dev, gen);
     await db.addGame(game,dev,gen);
 
     const content = await db.inventory();
-    console.log("the content is, " ,content);
+    res.render("table", {content: content});
+}
+
+exports.deleteGame = async(req,res) => {
+    const id = req.body.id;
+    await db.deleteRow(id);
+    const content = await db.inventory();
+    console.log(content, "is the content");
     res.render("table", {content: content});
 }
