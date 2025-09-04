@@ -2,6 +2,7 @@
 
 const {main} = require("./dbClient");
 const SQL = 
+
 `
 CREATE TABLE IF NOT EXISTS game_genres (
     game_id INTEGER REFERENCES games(game_id),
