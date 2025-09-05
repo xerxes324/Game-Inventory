@@ -1,0 +1,32 @@
+html,body{
+    background-color: black;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.errorpagestyle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+
+a{
+    font-size: 20px;
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    color: greenyellow;
+}
