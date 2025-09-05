@@ -3,13 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Search Results</title>
+    <link rel="stylesheet" href="/css/searchstyle.css">
 </head>
 <body>
-    <h1> Hello </h1>
-    <% dc.forEach(e=>{ %>
-        <h1> Game exists : <span> <%= e.game_name %></span></h1>
-        <h1> Dev : <%= e.dev_name %> </h1>
-    <%})%>
+    <div class="container">
+        <h1>Search Results</h1>
+
+        <% if (dc.length > 0) { %>
+            <div class="result">
+                <h2>Game exists: <span><%= dc[0].game_name %></span></h2>
+                <h2>Developer: <%= dc[0].dev_name %></h2>
+                <h2>Genre: <%= dc[0].genre_name %></h2>
+            </div>
+        <% } else { %>
+            <p>No results found.</p>
+        <% } %>
+    </div>
 </body>
 </html>
