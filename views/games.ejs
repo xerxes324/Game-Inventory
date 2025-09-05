@@ -3,56 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <style>
-        html,body{
-            background-color: black; color: white;
-        }
-
-        .gamesgrid{
-            display: grid;
-            grid-template-columns: repeat(5,1fr);
-            grid-template-rows: auto;
-            row-gap: 5rem;
-            column-gap: 5rem;
-            text-align: center;
-            border: 2px solid white;
-            padding: 20px;
-        }
-        .gameitem{
-            border: 2px solid white;
-            align-self: stretch;
-            justify-self: stretch;
-        }
-
-        .gamesheading{
-            display: flex;
-            justify-content: space-between;
-        }
-
-        a{
-            text-decoration: none;
-            color: white;
-        }
-
-    </style>
-
-
+    <title>Games</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <div class="gamesheading" >
+    <div class="heading">
         <h1> Games </h1>
         <div class="anchor"> 
-            <h1> <a href="/"> Menu </a> </h1>
+            <h1><a href="/"> Menu </a></h1>
         </div>
-        
     </div>
 
-
-    <div class="gamesgrid">
+    <div class="grid">
         <% gamename.forEach( e => { %>
-            <div class="gameitem"> 
+            <div class="grid-item"> 
                 <h2> <%= e.game %> </h2>
             </div>
         <% }) %>
