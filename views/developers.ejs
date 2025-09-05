@@ -4,51 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Developers</title>
-
-    <style>
-        html,body{
-            background-color: black; color: white;
-        }
-
-        .devsgrid{
-            display: grid;
-            grid-template-columns: repeat(5,1fr);
-            grid-template-rows: auto;
-            row-gap: 5rem;
-            column-gap: 5rem;
-            text-align: center;
-            border: 2px solid white;
-            padding: 20px;
-        }
-        .devitem{
-            border: 2px solid white;
-            align-self: stretch;
-            justify-self: stretch;
-        }
-
-        .devsheading{
-            display: flex;
-            justify-content: space-between;
-        }
-
-        a{
-            text-decoration: none;
-            color: white;
-        }
-    </style>
-
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <div class="devsheading" >
+    <div class="heading">
         <h1> Developers </h1>
         <div class="anchor"> 
-            <h1> <a href="/"> Menu </a> </h1>
+            <h1><a href="/"> Menu </a></h1>
         </div>
     </div>
 
-    <div class="devsgrid">
+    <div class="grid">
         <% dev.forEach( e => { %>
-            <div class="devitem"> 
+            <div class="grid-item"> 
                 <h2> <%= e.developers %> </h2>
             </div>
         <% }) %>
